@@ -8,7 +8,7 @@ function App() {
         <h1 className="h1">Christchurch</h1>
         <p className="p">The Garden City</p>
       </header>
-      <img src={logo} className="logo" />
+      <img src={logo} className="logo" alt="Christchurch Crest" />
     </div>
   );
 }
