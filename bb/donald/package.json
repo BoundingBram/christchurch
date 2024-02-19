@@ -1,0 +1,8 @@
+{
+  "name": "donald",
+  "version": "0.0.0",
+  "devDependencies": {
+    "wrangler": "3.28.3"
+  },
+  "private": true
+}

@@ -1,0 +1,7 @@
+name = "donald"
+compatibility_date = "2024-02-19"
+
+[[d1_databases]]  # Note the double square brackets here
+binding = "DB"
+database_name = "bob"
+database_id = "6bf99493-5e31-49ea-88f9-a0ca13721420"
