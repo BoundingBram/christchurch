@@ -22,7 +22,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>Database Table</h1>
+      <h1>Clients</h1>
       <table>
         <thead>
           <tr>
