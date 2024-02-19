@@ -1,69 +1,26 @@
-.app {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  height: 100vh; /* Set the height of the app to 100% of the viewport height */
-}
-
-.react-tabs {
-  flex: 1; /* Make the Tabs component fill the remaining space */
-}
-
-.react-tabs .react-tabs__tab-panel {
-  display: none; /* Hide all tab panels by default */
-  flex: 1; /* Make tab panels occupy the full height */
-  overflow-y: auto; /* Enable vertical scrolling if content exceeds panel height */
-}
-
-.react-tabs .react-tabs__tab-panel--selected {
-  display: block; /* Display the selected tab panel */
-}
-
-
-h1 {
-  font-size: 3vh;
-text-align: center;
-margin-left: auto;
-margin-right: auto;
-}
-
-/* Custom styles for react-tabs */
-.react-tabs {
-  width: 100%;
-}
-
-.react-tabs .react-tabs__tab-list {
-  list-style-type: none;
-  padding: 0;
+body {
+  font-family: Arial, sans-serif;
   margin: 0;
-  display: flex;
+  padding: 0;
 }
 
-.react-tabs .react-tabs__tab {
-  flex: 1;
-  padding: 10px;
-  text-align: center;
-  cursor: pointer;
-  border: 1px solid transparent;
-  border-bottom: none;
-  background-color: #f0f0f0;
-  transition: background-color 0.3s ease;
-}
-
-.react-tabs .react-tabs__tab:focus {
-  outline: none;
-}
-
-.react-tabs .react-tabs__tab--selected {
-  background-color: #ccc;
-}
-
-.react-tabs .react-tabs__tab--disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-.react-tabs .react-tabs__tab-panel {
-  border: 1px solid #ccc;
+.app {
   padding: 20px;
 }
+
+.client-page {
+  text-align: center;
+}
+
+.kanban-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Add more CSS styles as needed */
