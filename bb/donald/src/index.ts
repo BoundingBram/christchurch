@@ -1,28 +1,37 @@
-// Import the Database class from Cloudflare D1
 import { Database } from '@cloudflare/d1';
 
-// Define the endpoint handler function
-export async function handleRequest(request) {
-  try {
-    // Connect to the database using the binding defined in wrangler.toml
-    const env = {
-      DB: new Database('DB'), // Provide the binding name here
-    };
-
-    // Query the database to fetch client data
-    const { results } = await env.DB.prepare("SELECT * FROM clients").all();
-
-    // Return the fetched data as JSON response
-    return new Response(JSON.stringify(results), {
-      headers: { "Content-Type": "application/json" },
-    });
-  } catch (error) {
-    // Return error response if there's an exception
-    return new Response("Internal Server Error", { status: 500 });
-  }
+export interface Env {
+    DB: Database;
 }
 
-// Add event listener to handle incoming requests
-addEventListener("fetch", (event) => {
-  event.respondWith(handleRequest(event.request));
-});
+export default {
+    async fetch(request: Request, env: Env) {
+        const { pathname } = new URL(request.url);
+
+        if (pathname === "/api/clients") {
+            // Query the database or perform any other operations here
+            const clients = await fetchClientsFromDatabase(env.DB);
+
+            // Create a response with the fetched clients
+            const response = new Response(JSON.stringify(clients), {
+                headers: {
+                    "Content-Type": "application/json",
+                    // Allow requests from any origin (you can change this if needed)
+                    "Access-Control-Allow-Origin": "*"
+                }
+            });
+
+            return response;
+        }
+
+        // Handle other routes or requests here
+        return new Response("Not Found", { status: 404 });
+    },
+};
+
+async function fetchClientsFromDatabase(db: Database) {
+    // Implement your logic to fetch clients from the database here
+    // For example:
+    const queryResult = await db.query("SELECT * FROM clients");
+    return queryResult.rows;
+}
