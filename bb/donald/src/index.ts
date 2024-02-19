@@ -16,8 +16,8 @@ export default {
             const response = new Response(JSON.stringify(clients), {
                 headers: {
                     "Content-Type": "application/json",
-                    // Allow requests from any origin (you can change this if needed)
-                    "Access-Control-Allow-Origin": "*"
+                    // Allow requests only from https://honk.nz
+                    "Access-Control-Allow-Origin": "https://honk.nz"
                 }
             });
 
@@ -33,5 +33,5 @@ async function fetchClientsFromDatabase(db: Database) {
     // Implement your logic to fetch clients from the database here
     // For example:
     const queryResult = await db.query("SELECT * FROM clients");
-    return queryResult.rows;
+    return queryResult.results;
 }
