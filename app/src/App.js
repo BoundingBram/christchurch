@@ -1,16 +1,27 @@
-import logo from "./Chch_COA.jpg";
-import "./App.css";
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1 className="h1">Christchurch</h1>
-        <p className="p">The Garden City</p>
-      </header>
-      <img src={logo} className="logo" alt="Christchurch Crest" />
-    </div>
-  );
+class Dashboard extends React.Component {
+  render() {
+    return (
+      <div className="dashboard">
+        <h1>Welcome to Your Dashboard</h1>
+        <div className="widgets">
+          <div className="widget">
+            <h2>Widget 1</h2>
+            <p>This is the content of Widget 1</p>
+          </div>
+          <div className="widget">
+            <h2>Widget 2</h2>
+            <p>This is the content of Widget 2</p>
+          </div>
+          <div className="widget">
+            <h2>Widget 3</h2>
+            <p>This is the content of Widget 3</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default App;
+export default Dashboard;
