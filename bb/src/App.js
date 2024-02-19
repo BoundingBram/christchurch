@@ -10,10 +10,11 @@ const App = () => {
   const fetchData = async () => {
     try {
       // Assuming env.DB is your D1 database binding
-      const { results } = await env.DB.prepare(
-        "SELECT name FROM clients"
-      ).all();
-      setData(results);
+      const response = await fetch(
+        "https://donald.kiaora.workers.dev/api/clients"
+      );
+      const jsonData = await response.json();
+      setData(jsonData);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
