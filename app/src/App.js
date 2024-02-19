@@ -1,27 +1,31 @@
 import React from "react";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "./App.css";
 
-class Dashboard extends React.Component {
+class App extends React.Component {
   render() {
     return (
-      <div className="dashboard">
-        <h1>Welcome to Your Dashboard</h1>
-        <div className="widgets">
-          <div className="widget">
-            <h2>Widget 1</h2>
-            <p>This is the content of Widget 1</p>
-          </div>
-          <div className="widget">
-            <h2>Widget 2</h2>
-            <p>This is the content of Widget 2</p>
-          </div>
-          <div className="widget">
-            <h2>Widget 3</h2>
-            <p>This is the content of Widget 3</p>
-          </div>
-        </div>
+      <div className="app">
+        <h1>Christchurch</h1>
+        <Tabs>
+          <TabList>
+            <Tab>Local news</Tab>
+            <Tab>Local business</Tab>
+            <Tab>Local gems</Tab>
+          </TabList>
+          <TabPanel>
+            <h1>A Test</h1>
+          </TabPanel>
+          <TabPanel>
+            <h1>A Twost</h1>
+          </TabPanel>
+          <TabPanel>
+            <h1>A Twitzel</h1>
+          </TabPanel>
+        </Tabs>
       </div>
     );
   }
 }
 
-export default Dashboard;
+export default App;
