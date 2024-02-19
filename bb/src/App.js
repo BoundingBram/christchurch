@@ -9,11 +9,11 @@ const App = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(
-        "https://donald.kiaora.workers.dev/api/clients"
-      );
-      const jsonData = await response.json();
-      setData(jsonData);
+      // Assuming env.DB is your D1 database binding
+      const { results } = await env.DB.prepare(
+        "SELECT name FROM clients"
+      ).all();
+      setData(results);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -30,8 +30,8 @@ const App = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item) => (
-            <tr key={item.id}>
+          {data.map((item, index) => (
+            <tr key={index}>
               <td>{item.name}</td>
               {/* Add more table cells as needed */}
             </tr>
