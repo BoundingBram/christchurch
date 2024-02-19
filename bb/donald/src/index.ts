@@ -1,27 +1,28 @@
+// Import the Database class from Cloudflare D1
 import { Database } from '@cloudflare/d1';
 
-export interface Env {
-    // If you set another name in wrangler.toml as the value for 'binding',
-    // replace "DB" with the variable name you defined.
-    DB: Database;
+// Define the endpoint handler function
+export async function handleRequest(request) {
+  try {
+    // Connect to the database using the binding defined in wrangler.toml
+    const env = {
+      DB: new Database('DB'), // Provide the binding name here
+    };
+
+    // Query the database to fetch client data
+    const { results } = await env.DB.prepare("SELECT * FROM clients").all();
+
+    // Return the fetched data as JSON response
+    return new Response(JSON.stringify(results), {
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    // Return error response if there's an exception
+    return new Response("Internal Server Error", { status: 500 });
   }
-  
-  export default {
-    async fetch(request: Request, env: Env) {
-      const { pathname } = new URL(request.url);
-  
-      if (pathname === "/api/beverages") {
-        // If you did not use `DB` as your binding name, change it here
-        const { results } = await env.DB.prepare(
-          "SELECT * FROM Customers WHERE CompanyName = ?"
-        )
-          .bind("Bs Beverages")
-          .all();
-        return Response.json(results);
-      }
-  
-      return new Response(
-        "Call /api/beverages to see everyone who works at Bs Beverages"
-      );
-    },
-  };
+}
+
+// Add event listener to handle incoming requests
+addEventListener("fetch", (event) => {
+  event.respondWith(handleRequest(event.request));
+});

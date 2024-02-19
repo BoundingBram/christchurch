@@ -9,7 +9,9 @@ const App = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("https://donald.kiaora.workers.dev");
+      const response = await fetch(
+        "https://donald.kiaora.workers.dev/api/clients"
+      );
       const jsonData = await response.json();
       setData(jsonData);
     } catch (error) {
@@ -23,7 +25,6 @@ const App = () => {
       <table>
         <thead>
           <tr>
-            <th>ID</th>
             <th>Name</th>
             {/* Add more table headers as needed */}
           </tr>
@@ -31,7 +32,6 @@ const App = () => {
         <tbody>
           {data.map((item) => (
             <tr key={item.id}>
-              <td>{item.id}</td>
               <td>{item.name}</td>
               {/* Add more table cells as needed */}
             </tr>
